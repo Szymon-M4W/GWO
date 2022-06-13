@@ -1,0 +1,32 @@
+<header class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="userInfo">
+          <ng-container *ngIf="userName != ''; else loginbtn">
+            <p>Witaj: {{ userName }}</p>
+            <button mat-flat-button color="primary" (click)="logOut()">
+              Wyloguj
+            </button>
+          </ng-container>
+          <ng-template #loginbtn>
+            <a mat-stroked-button [routerLink]="['/list-of-products']"
+              >Lista produktów</a
+            >
+            <a mat-flat-button color="primary" [routerLink]="['/login']"
+              >Zaloguj</a
+            >
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="pageWrapper">
+  <router-outlet></router-outlet>
+</main>
+<footer class="section">
+  <div class="container">
+    <p>Project for GWO {{ yearNow }}</p>
+  </div>
+</footer>

@@ -1,0 +1,22 @@
+<div class="modal__header">
+  <h1 mat-dialog-title>
+    {{ data.header }}
+  </h1>
+  <span class="material-icons" mat-dialog-close>close</span>
+</div>
+
+<div class="modal__content" mat-dialog-content>
+  <div class="checkboxContent">
+    <mat-checkbox color="primary" [(ngModel)]="removeCheckbox"
+      >potwierdzam chęć usunięcia produktu
+    </mat-checkbox>
+    <mat-error *ngIf="showError"> Pole wymagane</mat-error>
+  </div>
+</div>
+
+<div class="modal__footer mat_buttons" mat-dialog-actions>
+  <button mat-stroked-button color="primary" (click)="removeProduct()">
+    Tak
+  </button>
+  <button mat-stroked-button mat-dialog-close>Nie</button>
+</div>

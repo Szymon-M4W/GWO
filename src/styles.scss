@@ -1,0 +1,99 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  font-size: 10px;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+#bodyWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.section {
+  float: left;
+  width: 100%;
+  position: relative;
+  padding: 5rem 0;
+}
+h1 {
+  font-size: 2.6rem;
+  line-height: 3.4rem;
+}
+h2 {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+}
+h3 {
+  font-size: 2.2rem;
+  line-height: 3rem;
+}
+h4 {
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+}
+h5 {
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+h6 {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+}
+p {
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+.mat-dialog-container {
+  position: relative;
+
+  .modal {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      h1 {
+        font-size: 1.8rem;
+        margin: 0;
+        font-weight: 700;
+        color: #313a4b;
+      }
+
+      & > span {
+        font-weight: 900;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        cursor: pointer;
+      }
+    }
+
+    &__content {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+
+      mat-form-field {
+        width: 100%;
+        font-size: 1.6rem;
+      }
+    }
+
+    &__footer {
+      justify-content: flex-end;
+
+      .mat_buttons {
+        justify-content: center;
+
+        button[color="primary"] {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

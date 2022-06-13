@@ -1,0 +1,28 @@
+#pageWrapper {
+  flex: 1;
+}
+header {
+  padding: 15px 0;
+  background-color: #f8f9fa;
+  .userInfo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+    & > * {
+      margin: 5px 5px;
+    }
+  }
+}
+footer {
+  padding: 15px 0;
+  background-color: #f8f9fa !important;
+
+  p {
+    text-align: center;
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+}

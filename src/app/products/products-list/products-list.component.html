@@ -1,0 +1,63 @@
+<section class="section" id="productsList">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="pageTitle">
+          <h1>Lista produktów</h1>
+          <button
+            mat-stroked-button
+            color="primary"
+            *ngIf="isUser"
+            (click)="addNewProduct()"
+          >
+            Dodaj produkt
+          </button>
+        </div>
+        <mat-form-field class="searchInput">
+          <input
+            matInput
+            type="text"
+            placeholder="Szukaj po nazwie"
+            [(ngModel)]="searchInput"
+            (input)="searchProduct($event)"
+          />
+        </mat-form-field>
+        <div class="cardsList">
+          <mat-card *ngFor="let product of newProductsList; let i = index">
+            <div class="productThumb">
+              <img [src]="product.thumbUrl" [alt]="product.name" />
+            </div>
+            <div class="productContent">
+              <mat-card-title
+                >{{ product.name }}
+                <mat-icon *ngIf="isUser" (click)="editProduct(product)"
+                  >edit</mat-icon
+                >
+              </mat-card-title>
+              <mat-card-subtitle *ngFor="let price of product.prices"
+                >Cena {{ price.name }}:
+                {{
+                  price.price | currency: "PLN":"symbol":"1.2-2":"pl"
+                }}</mat-card-subtitle
+              >
+              <p
+                *ngIf="
+                  !showMoreArray[i] && product.description.length > 120;
+                  else showDescription
+                "
+              >
+                {{ product.description | slice: 0:120 }}...
+                <span (click)="showMoreArray[i] = true">pokaż więcej</span>
+              </p>
+              <ng-template #showDescription>
+                <p>
+                  {{ product.description }}
+                </p>
+              </ng-template>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

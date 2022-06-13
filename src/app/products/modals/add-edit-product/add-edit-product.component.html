@@ -1,0 +1,120 @@
+<div class="modal__header">
+  <h1 mat-dialog-title>
+    {{ data.header }}
+  </h1>
+  <span class="material-icons" mat-dialog-close>close</span>
+</div>
+
+<div class="modal__content" mat-dialog-content>
+  <form id="ngForm" [formGroup]="productFormGroup" (ngSubmit)="saveProduct()">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Nazwa"
+        name="name"
+        formControlName="name"
+      />
+      <mat-error *ngIf="errorHandling('name', 'required')">
+        Pole wymagane</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        formControlName="description"
+        rows="4"
+        placeholder="Opis"
+      ></textarea>
+      <mat-error *ngIf="errorHandling('description', 'required')">
+        Pole wymagane</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Url miniatury"
+        name="thumbUrl"
+        formControlName="thumbUrl"
+      />
+      <mat-error *ngIf="errorHandling('thumbUrl', 'required')">
+        Pole wymagane</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        matInput
+        formControlName="type"
+        placeholder="Wybierz typ produktu"
+      >
+        <mat-option [value]="1">Filtry kabinowe</mat-option>
+        <mat-option [value]="2">Żarówki</mat-option>
+        <mat-option [value]="3">Wycieraczki szyb</mat-option>
+        <mat-option [value]="4">Hamulce</mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('type', 'required')">
+        Pole wymagane</mat-error
+      >
+    </mat-form-field>
+    <ng-container *ngIf="prices.length > 0" [formGroup]="pricesFormGroup">
+      <div class="row" *ngFor="let price of prices; let i = index">
+        <div class="col-md-6">
+          <div class="priceNameContent">
+            <mat-icon (click)="removePrice(i)">delete</mat-icon>
+            <mat-form-field>
+              <input
+                matInput
+                type="text"
+                placeholder="Wpisz nazwe ceny"
+                name="price_name"
+                [formControlName]="'price_name_' + i"
+              />
+              <mat-error
+                *ngIf="errorPriceHandling('price_name_' + i, 'required')"
+              >
+                Pole wymagane</mat-error
+              >
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="Wpisz cene"
+              name="product_price"
+              [formControlName]="'price_' + i"
+            />
+            <mat-error *ngIf="errorPriceHandling('price_' + i, 'required')">
+              Pole wymagane</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-container>
+    <button
+      mat-stroked-button
+      color="primary"
+      type="button"
+      (click)="addPrice()"
+    >
+      Dodaj cene
+    </button>
+  </form>
+</div>
+<div class="modal__footer mat_buttons" mat-dialog-actions>
+  <button
+    mat-stroked-button
+    color="warn"
+    *ngIf="data.product"
+    (click)="remove()"
+  >
+    Usuń
+  </button>
+  <button mat-stroked-button color="primary" type="submit" form="ngForm">
+    Zapisz
+  </button>
+  <button mat-stroked-button mat-dialog-close>Zamknij</button>
+</div>
